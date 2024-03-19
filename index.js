@@ -16,3 +16,4 @@ app.get('/',(req,res)=>{
 app.listen(PORT,(err)=>{
     if(!err)console.log(`server started:http://localhost:${PORT}/ `);
 })
+
