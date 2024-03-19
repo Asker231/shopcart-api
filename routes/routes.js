@@ -1,8 +1,10 @@
 const {Router} = require('express')
-const {createUser} = require('../controllers/authController')
+const {createUser,getAll} = require('../controllers/authController')
 
 const route = Router()
-route.get('/',createUser)
+
+route.post('/',createUser)
+route.get('/',getAll)
 
 
 
