@@ -1,5 +1,5 @@
 const pool = require('../db/db')
-const {addUser} = require('../query/query')
+const {addUser,getAllUsers} = require('../query/query')
 
 async function createUser(req,res){
 
@@ -15,6 +15,19 @@ async function createUser(req,res){
     res.end()
 }
 
+async function getAll(req,res){
+    try {
+        await pool.query(getAllUsers,(err,result)=>{
+            if(!err)console.log(result.rows);
+        })
+    } catch (error) {
+        
+    }
+    res.end()
+}
+
+
 module.exports = {
-    createUser
+    createUser,
+    getAll
 }
