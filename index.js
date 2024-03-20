@@ -1,18 +1,22 @@
 require('dotenv').config()
 const express = require('express')
-const routes = require('./routes/routes')
+const authRoutes = require('./routes/authRoutes')
+const cors = require('cors')
+const fs = require('fs')
+
 
 const app = express()
-
+app.use(cors())
 app.use(express.json())
-app.use('/users',routes)
+app.use('/auth',authRoutes)
 
 const PORT = 3002
 
-app.get('/',(req,res)=>{
+app.get('/',async(req,res)=>{
     try {
-        res.status(200)
-        res.send("</h1>Hello cartshopAPI</h1>")
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        let data = await fs.promises.readFile('./public/index.html','utf-8')
+        res.write(data)
     } catch (error) {
         console.log(error);
     }
